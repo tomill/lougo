@@ -2,18 +2,26 @@ package lougo
 
 import (
 	"strings"
+	"sync"
 
 	"github.com/ikawaha/kagome/tokenizer"
 )
 
+var (
+	loukenizer tokenizer.Tokenizer
+	once       sync.Once
+)
+
 // Lou returns filtered input text like as Lou Ohshiba. Let's together!!
 func Lou(input string) (output string, err error) {
-	t, err := louTokenizer()
+	once.Do(func() {
+		loukenizer, err = loader()
+	})
 	if err != nil {
 		return
 	}
 
-	tokens := t.Tokenize(input)
+	tokens := loukenizer.Tokenize(input)
 
 	var out []string
 	for _, token := range tokens {
@@ -34,9 +42,7 @@ func Lou(input string) (output string, err error) {
 	return
 }
 
-func louTokenizer() (t tokenizer.Tokenizer, err error) {
-	t = tokenizer.New()
-
+func loader() (t tokenizer.Tokenizer, err error) {
 	f, err := Assets.Open("/data/loudic.txt")
 	if err != nil {
 		return
@@ -52,6 +58,7 @@ func louTokenizer() (t tokenizer.Tokenizer, err error) {
 		return
 	}
 
+	t = tokenizer.New()
 	t.SetUserDic(udic)
 	return
 }
