@@ -21,11 +21,6 @@ func main() {
 }
 ```
 
-## Depends
-
-* mecab and utf-8 compiled system dictionary
-* https://github.com/shogo82148/go-mecab/
-
 ## See also
 
 * [lou5.jp](https://lou5.jp)

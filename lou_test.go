@@ -4,7 +4,6 @@ import "testing"
 
 var tests = map[string]string{
 	"今年もよろしくお願いいたします。":         "ディスイヤーもよろしくプリーズいたします。",
-	"お時間をありがとうございます。":          "タイムをありがとうございます。",
 	"信頼と安心のルー語となるよう邁進してまいります。": "トラストとピースオブマインドのルーランゲージとなるようプッシュフォワードしてまいります。",
 }
 
@@ -15,7 +14,10 @@ func TestLou(t *testing.T) {
 			t.Fatal(err)
 		}
 		if output != expected {
-			t.Fatal(output)
+			t.Errorf(`
+                input:    %v
+                output:   %v
+                expected: %v`, input, output, expected)
 		}
 	}
 }
