@@ -2,7 +2,18 @@
 
 **Lougo** is a golang version of perl5 ルー語変換 library [Acme::Lou](https://metacpan.org/pod/Acme::Lou).
 
-## Example
+## Download
+
+<https://github.com/tomill/lougo/releases>
+
+## Usage
+
+```
+$ echo "人生には、大切な三つの袋があります。" | lougo
+ライフには、インポータントな三つの袋があります。
+```
+
+## Library
 
 ```
 package main
@@ -23,4 +34,6 @@ func main() {
 
 ## See also
 
-* [lou5.jp](https://lou5.jp)
+* https://lou5.jp
+* https://github.com/ikawaha/kagome/
+* https://github.com/tomill/Acme-Lou
